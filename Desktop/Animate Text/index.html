@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Animate Text</title>
+
+  <style>
+    body{
+    text-align: center;
+    }
+    
+    .text{
+        font-size: 100px;
+        font-family: fantasy;
+        display: inline-block;
+        color: gray;
+        transition: all 250ms ease-in-out;
+    }
+    .text.animate{
+        transform: scale(1.5) rotate(20deg);
+        color: blue;
+    }
+  </style>
+
+</head>
+
+  <body>
+
+    <h1 class="text">Animate Text</h1>
+
+    <script>
+        const h1 = document.querySelector("h1");
+        const text = h1.innerText.split('');
+        let html = "" 
+        
+        text.forEach(text => {
+            html = html + `<span class='text js-text'>${text}</span>`
+        })
+        
+        h1.innerHTML =html;
+
+        const jsText = document.querySelectorAll(".js-text");
+        jsText.forEach(node =>{
+            node.addEventListener("mouseover", function(e){
+                this.classList.add("animate");
+            })
+            node.addEventListener("mouseout", function(e){
+                this.classList.remove("animate");
+            })
+        })
+    </script>
+
+  </body>
